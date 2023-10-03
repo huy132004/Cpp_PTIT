@@ -2,22 +2,18 @@
 #include <math.h>
 using namespace std;
 
-bool canBangChanLe(long i)
-{
+bool canBangChanLe(long i){
     int chan = 0, le = 0;
     int chuso;
-    while (i > 0)
-    {
+    while (i > 0){
         chuso = i % 10;
         chuso % 2 == 0 ? ++chan : ++le;
         i /= 10;
     }
-    if (chan == le)
-    {
+    if (chan == le){
         return true;
     }
-    else
-    {
+    else{
         return false;
     }
 }
