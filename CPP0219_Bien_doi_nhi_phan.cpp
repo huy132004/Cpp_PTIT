@@ -19,11 +19,11 @@ int main(){
             for(int j = 0; j < n; j++){
                 if(a[i][j] == 1){
                     int k = i;
-                    for(int l = 0; l < m; l++){
+                    for(int l = 0; l < n; l++){
                         b[k][l] = 1;
                     }
                     int l = j;
-                    for(k = 0; k < n; k++){
+                    for(k = 0; k < m; k++){
                         b[k][l] = 1;
                     }
                 }
