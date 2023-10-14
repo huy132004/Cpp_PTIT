@@ -1,20 +1,21 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 int main(){
     int T;
     cin >> T;
     while(T--){
-        char str[1000][100];
-        int n = 0;
-        char kitu;
-        do{
-            cin >> str[n];
-            ++n;
-            kitu = getchar();
-        } while (kitu == ' ');
-        for(int i = n-1; i >= 0; i--){
-            cout << str[i] << " ";
+        string s;
+        getline(cin, s);
+        stringstream ss(s);
+        string m;
+        vector<string> output;
+        while(ss >> m){
+            output.push_back(m);
+        }
+        reverse(output.begin(), output.end());
+        for(string word : output){
+            cout << word << " ";
         }
         cout << endl;
     }

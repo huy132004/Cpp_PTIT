@@ -4,9 +4,10 @@ using ll = long long;
 
 void solve(ll a, ll b, ll c){
     ll result = 0;
+    ll mod = b % c;
     for (ll i = 1; i <= a; i++){
-       result += b;
-       result %= c; 
+       result += mod;
+       if(result >= c) result -= c; 
     }
     cout << result << endl;
 }
