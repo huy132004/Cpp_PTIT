@@ -1,44 +1,34 @@
-#include <iostream>
-#include <vector>
-#include <unordered_set>
-#include <algorithm>
-
+#include<bits/stdc++.h>
 using namespace std;
 
-void nhapDataEmail(const string &ten, unordered_set<string> &emailSet) {
-    string email;
-    bool capitalizeNext = true;
-    for (char c : ten) {
-        if (isalpha(c)) {
-            if (capitalizeNext) {
-                email += tolower(c);
-                capitalizeNext = false;
-            }
-        } else {
-            capitalizeNext = true;
-        }
-    }
-    emailSet.insert(email);
-}
+map<string, int> demSoEmail;
 
-void inEmail(const unordered_set<string> &emailSet) {
-    for (const string &email : emailSet) {
+void chuyenTenThanhEmail(string ten){
+    string email;
+    stringstream ss(ten);   
+    string word;
+    while(ss >> word){
+        email += tolower(word[0]);
+    }
+    email.pop_back();
+    for(int i = 0; i < word.length(); i++){
+        word[i] = tolower(word[i]);
+    }
+    email = word + email;
+    ++demSoEmail[email];
+    if(demSoEmail[email] > 1){
+        cout << email << demSoEmail[email] << "@ptit.edu.vn" << endl;
+    } else {
         cout << email << "@ptit.edu.vn" << endl;
     }
 }
 
-int main() {
+int main(){
     int N;
-    cin >> N;
-    cin.ignore(); // Loại bỏ ký tự new line sau N
-    unordered_set<string> emailSet;
-    
-    for (int i = 0; i < N; i++) {
-        string ten;
+    cin >> N >> ws;
+    string ten;
+    for(int i = 0; i < N; i++){
         getline(cin, ten);
-        nhapDataEmail(ten, emailSet);
+        chuyenTenThanhEmail(ten);
     }
-    
-    inEmail(emailSet);
-    return 0;
 }

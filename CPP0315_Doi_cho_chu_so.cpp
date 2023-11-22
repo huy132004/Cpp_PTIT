@@ -1,9 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Các test case: 
 void solve_swap(string num, int i){
-    char swap_pos = i;
-    // Tìm ra số lớn nhất nhỏ hơn i-1 để swap, tính từ i đến cuối
+    int swap_pos = i;
+    // Tìm ra số lớn nhất nhỏ hơn số vị trí i-1 để swap, tính từ vị trí i đến cuối
     // Ta có ví dụ số 1297893789 -> 1297883799 chứ không phải 1297839789
     for(int j = i+1; j < num.size(); j++){
         if(num[j] > num[swap_pos] && num[j] < num[i-1]){
@@ -11,24 +12,32 @@ void solve_swap(string num, int i){
         }
     }
     swap(num[i-1], num[swap_pos]);
-    cout << num << endl;
+    // Sau khi swap nếu chữ số đầu bằng 0 -> không hợp lệ
+    if(num[0] != '0'){
+        cout << num << endl;
+    } else {
+        cout << -1 << endl;
+    }
 }
 
 void solve(string num){
+    // Nếu chữ số đầu bằng 0 -> không hợp lệ
+    if(num[0] == '0'){
+        cout << -1 << endl;
+        return;
+    }
+    // Nếu số num có 1 chữ số -> không hợp lệ
+    if(num.length() == 1){
+        cout << -1 << endl;
+        return;
+    }
     // Tìm ra vị trí i đầu tiên mà num[i] < num[i-1], tính từ phải sang trái
     // Ví dụ 12435 -> 12345, 12345 -> -1, 99999 -> -1
-    for(int i = num.size()-1; i >= 2; i--){
+    for(int i = num.size()-1; i >= 1; i--){
         if(num[i] < num[i-1]){
             solve_swap(num, i);
             return;
         }
-    }
-    // TH kí tự swap ở vị trí thứ 2 mà bằng 0 sẽ ko hợp lệ
-    // Ví dụ số 102345 -> 012345, 10000 -> 01000 là sai
-    int i = 1;
-    if(num[i] < num[0] && num[i] != '0'){
-        solve_swap(num, i);
-        return;
     }
     cout << -1 << endl;
 }

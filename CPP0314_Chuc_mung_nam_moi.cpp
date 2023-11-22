@@ -1,31 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+set<string> my_set;
+
 int main()
 {
     int n;
-    cin >> n;
-    cin.ignore();
-    char s[n][30];
+    cin >> n >> ws;
+    vector<string> s(n);
     for(int i = 0; i < n; i++){
-        cin.getline(s[i],30);
+        getline(cin, s[i]);
+        my_set.insert(s[i]);
     }
-    
-    bool print[n] = {true};
-    int result = n;
-    for (int i = 0; i < n; i++)
-    {
-        if (print[i] == true)
-        {
-            for (int j = i + 1; j < n; j++)
-            {
-                if (strcmp(s[i], s[j]) == 0)
-                {
-                    print[j] = false;
-                    --result;
-                }
-            }
-        }
-    }
-    cout << result;
+    cout << my_set.size();
 }
