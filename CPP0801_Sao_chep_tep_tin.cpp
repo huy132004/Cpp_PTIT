@@ -1,15 +1,12 @@
-#include <fstream>
+#include <bits/stdc++.h>
+using namespace std;
 
 int main(void) {
-
-	std::ifstream ifs("PTIT.in");
-	std::ofstream ofs("PTIT.out");
-
-	std::string buf;
-
-	while (std::getline(ifs, buf)) {
-		ofs << buf << std::endl;
+	fstream in;
+	in.open("PTIT.in", ios::in);
+	string word;
+	while(in >> word){
+		cout << word << ' ';
 	}
-
-	return 0;
+	in.close();
 }

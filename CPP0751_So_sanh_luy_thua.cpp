@@ -1,43 +1,42 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
+int solve(int x, int y){
+    if (y == 1 && x > 1) return 1;
+    if(x == y) return 0;
+    if((x == 2))
+    if (x + y <= 6){
+        if(x <= y) return 0;
+        else return 1;
+    }
+    if (x + y > 6){
+        if(x < y) return 1;
+        else return 0;
+    }
+    return 1;
+}
+
+int main(){
     int T;
     cin >> T;
-    while (T--) {
+    while(T--){
         int m, n;
         cin >> m >> n;
         vector<int> x(m);
         vector<int> y(n);
-
-        for (int i = 0; i < m; i++) {
+        for(int i = 0; i < m; i++){
             cin >> x[i];
         }
-
-        for (int j = 0; j < n; j++) {
+        for(int j = 0; j < n; j++){
             cin >> y[j];
         }
-
-        // Sort the arrays
-        sort(x.rbegin(), x.rend()); // Sort in descending order
-        sort(y.begin(), y.end());    // Sort in ascending order
-
         int count = 0;
-        int j = 0;
-
-        for (int i = 0; i < m; i++) {
-            if (x[i] == 1) {
-                continue;
+        for(int i = 0; i < m; i++){
+            if(x[i] == 1) continue;
+            for(int j = 0; j < n; j++){
+                if(solve(x[i], y[j])) ++count;
             }
-
-            // Find the number of elements in Y[] which satisfy the condition
-            while (j < n && y[j] <= x[i]) {
-                j++;
-            }
-
-            count += (n - j);
-        }
-
-        cout << count << endl;
+        }  
+        cout << count << endl;  
     }
 }

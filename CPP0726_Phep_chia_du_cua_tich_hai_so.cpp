@@ -2,14 +2,16 @@
 using namespace std;
 using ll = long long;
 
-void solve(ll a, ll b, ll c){
-    ll result = 0;
-    ll mod = b % c;
-    for (ll i = 1; i <= a; i++){
-       result += mod;
-       if(result >= c) result -= c; 
+ll add(ll a, ll b, ll c){
+    if (b == 0) return 0;
+    ll x = add(a, b/2, c);
+    if(b % 2 == 0){
+        ll result = (2 * (x % c)) % c;
+        return result;
+    } else {
+        ll result = (a % c + 2 * (x % c)) % c;
+        return result;
     }
-    cout << result << endl;
 }
 
 int main(){
@@ -18,6 +20,6 @@ int main(){
     while (T--){
         ll a, b, c;
         cin >> a >> b >> c;
-        solve(a, b, c);
+        cout << add(a, b, c) << endl;
     }
 }
